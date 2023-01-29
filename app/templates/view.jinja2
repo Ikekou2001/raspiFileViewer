@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/resource/static/bootstrap.min.css" rel="stylesheet">
+    <link href="/resource/static/bootstrap-icons.css" rel="stylesheet">
+    <style>
+      img.img-content{
+        margin: 0 auto;
+      }
+    </style>
+    <title>{{view.title}}</title>
+  </head>
+  <body class="bg-dark" height="100vh">
+    <div id="header">
+
+      <nav class="navbar navbar-expand navbar-dark">
+        <div class="container-fluid">
+          <a href="/l" class="navbar-brand">HOME</i></a>
+          <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav me-auto my-auto">
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  1
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark overflow-auto" style="height: 75vh" aria-labelledby="navbarDropdown">
+{% for i in builtins.range(builtins.len(view.seq_img)) %}
+  {% set i1 = i + 1 %}
+  {% if i == 0 %}
+                  <li><a href="#" class="dropdown-item active" id="d{{i}}" role="button" data-bs-target="#imgCarousel" data-bs-slide-to="{{i}}">{{i1}}</a></li>
+  {% else %}
+                  <li><a href="#" class="dropdown-item" id="d{{i}}" role="button" data-bs-target="#imgCarousel" data-bs-slide-to="{{i}}">{{i1}}</a></li>
+  {% endif %}
+{% endfor %}
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </div>
+    <div id="content">
+
+      <div id="imgCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+        <div class="carousel-inner">
+{% for i, img in builtins.enumerate(view.seq_img) %}
+  {% if i == 0 %}
+          <div class="carousel-item active">
+  {% else %}
+          <div class="carousel-item">
+  {% endif %}
+            <img data-src="{{img.src}}" class="d-block img-content lazyload" alt="{{img.alt}}" style="max-width: 100%">
+          </div>
+{% endfor %}
+        </div>
+      </div>
+
+    </div>
+    <script src="/resource/static/popper.min.js"></script>
+    <script src="/resource/static/bootstrap.min.js"></script>
+    <script src="/resource/static/lazyload.js"></script>
+    <script src="/resource/static/view.js"></script>
+  </body>
+</html>

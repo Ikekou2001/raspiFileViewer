@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/resource/static/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      a.list-group-item-inverted{
+        color: #fff;
+        background-color: #212529;
+        border: 1px solid rgba(255,255,255,.25)
+      }
+    </style>
+    <title>{{list.title}}</title>
+  </head>
+  <body class="bg-dark">
+    <div id="header"></div>
+    <div id="content">
+      <div class="list-group">
+{% for link in list.lst %}
+        <a class="list-group-item list-group-item-inverted" href="{{link.href}}">{{link.name}}</a>
+{% endfor %}
+      </div>
+    </div>
+    <script src="/resource/static/popper.min.js"></script>
+    <script src="/resource/static/bootstrap.min.js"></script>
+  </body>
+</html>
